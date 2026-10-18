@@ -1,0 +1,25 @@
+{{- $page := . -}}
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="{{ site.Home.RelPermalink }}">{{ i18n "brand" }}</a>
+    <nav class="site-nav" aria-label="{{ i18n "nav_main" }}">
+      <ul>
+        {{- /* An item renders only when its page is built (drafts are not). A page with no translation in this
+          language links to the default-language page instead (static pages launch in English). */}}
+        {{- range $item := slice (dict "p" "/work" "k" "nav_work") (dict "p" "/writing" "k" "nav_writing") (dict "p" "/experience" "k" "nav_experience") (dict "p" "/open-source" "k" "nav_opensource") (dict "p" "/now" "k" "nav_now") (dict "p" "/about" "k" "nav_about") (dict "p" "/contact" "k" "nav_contact") }}
+        {{- with partial "page-or-default.html" $item.p }}
+        {{- /* Writing shows only once this language has a published post. */}}
+        {{- if or (ne $item.p "/writing") .RegularPages }}
+        {{- $href := .RelPermalink }}
+        <li><a href="{{ $href }}"{{ if hasPrefix $page.RelPermalink $href }} aria-current="page"{{ end }}>{{ i18n $item.k }}</a></li>
+        {{- end }}
+        {{- end }}
+        {{- end }}
+      </ul>
+    </nav>
+    <div class="header-tools">
+      {{ partial "lang-toggle.html" . }}
+      {{ partial "theme-toggle.html" . }}
+    </div>
+  </div>
+</header>

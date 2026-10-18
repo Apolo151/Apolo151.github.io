@@ -1,0 +1,5 @@
+{{- with .Translations }}
+{{- range first 1 . }}
+<a class="lang-toggle" href="{{ .RelPermalink }}" hreflang="{{ .Language.LanguageCode }}" lang="{{ .Language.LanguageCode }}" aria-label="{{ i18n "lang_toggle" }}: {{ i18n "lang_toggle_label" }}">{{ i18n "lang_toggle" }}</a>
+{{- end }}
+{{- end }}

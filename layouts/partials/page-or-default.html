@@ -1,0 +1,5 @@
+{{- /* Takes a page path such as "/contact". Returns that page in the current language, else the
+  default-language page, else nil (not built, for example a draft). */ -}}
+{{- $p := site.GetPage . -}}
+{{- if not $p }}{{ $p = site.Sites.Default.GetPage . }}{{ end -}}
+{{- return $p -}}

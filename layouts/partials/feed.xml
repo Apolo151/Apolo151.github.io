@@ -1,0 +1,42 @@
+{{- /* Renders one RSS 2.0 feed. Takes a dict: "langs" (slice of post languages to include, empty = all),
+  "feedlang" (channel language code), "self" (the feed's own site-relative path), "desc" (channel description).
+  Posts are the non-draft pages of the writing section in every language site (drafts are never built, so never here).
+  Item descriptions are plain text from the front matter "description" (plainify returns trusted HTML, so it is converted back to a string and the template engine escapes it); the post
+  body is never put in the feed, so no raw HTML or Markdown output reaches a reader.
+  The newest post decides lastBuildDate; with no posts the element is omitted, so identical content always builds identical feeds. */ -}}
+{{- $langs := .langs -}}
+{{- $posts := slice -}}
+{{- range site.Sites -}}
+  {{- range where .RegularPages "Section" "writing" -}}
+    {{- if or (not $langs) (in $langs (.Params.language | default "")) -}}
+      {{- $posts = $posts | append . -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- $posts = sort $posts "Date" "desc" -}}
+{{- $rfc822 := "Mon, 02 Jan 2006 15:04:05 -0700" -}}
+{{- printf "<?xml version=\"1.0\" encoding=\"utf-8\"?>" | safeHTML }}
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>{{ site.Title }}</title>
+    <link>{{ site.Home.Permalink }}</link>
+    <description>{{ .desc }}</description>
+    <language>{{ .feedlang }}</language>
+    {{- with index $posts 0 }}
+    <lastBuildDate>{{ .Date.Format $rfc822 }}</lastBuildDate>
+    {{- end }}
+    <atom:link href="{{ .self | absURL }}" rel="self" type="application/rss+xml"/>
+    {{- range $posts }}
+    <item>
+      <title>{{ .Title }}</title>
+      <link>{{ .Permalink }}</link>
+      <guid isPermaLink="true">{{ .Permalink }}</guid>
+      <pubDate>{{ .Date.Format $rfc822 }}</pubDate>
+      <description>{{ .Params.description | default "" | plainify | printf "%s" | htmlUnescape | printf "%s" }}</description>
+      {{- range .GetTerms "categories" }}
+      <category>{{ partial "category-name.html" . }}</category>
+      {{- end }}
+    </item>
+    {{- end }}
+  </channel>
+</rss>

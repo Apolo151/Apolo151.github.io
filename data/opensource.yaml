@@ -1,0 +1,60 @@
+# Open-source page, hand-maintained from verified career records. Each project carries a neutral reference id (O1, ...).
+# Only verified items that have a link (PR numbers plus repository URLs).
+# States were checked read-only with `gh pr view` on 2026-10-18; all listed JdeRobot PRs are merged.
+
+# source: verified career record, item O1
+# Merged and open pull requests without a link on record are not listed.
+- project: "koordinator-sh/koordinator"
+  url: "https://github.com/koordinator-sh/koordinator"
+  stars: "1.7k"
+  items:
+    - title: "Descheduler balance proof of concept in Go (my own repository)"
+      url: "https://github.com/Apolo151/koord-descheduler-balance-poc"
+
+# source: verified career record, item O2
+- project: "JdeRobot/RoboticsAcademy"
+  url: "https://github.com/JdeRobot/RoboticsAcademy"
+  items:
+    - title: "Coding style guide, agreed through a community survey"
+      url: "https://github.com/JdeRobot/RoboticsAcademy/pull/3142"
+      state: merged
+    - title: "Python and JavaScript lint workflows, with the existing code reformatted"
+      url: "https://github.com/JdeRobot/RoboticsAcademy/pull/3143"
+      state: merged
+    - title: "Hardware-interface tests with ROS and WebSocket mocks (merged after the program)"
+      url: "https://github.com/JdeRobot/RoboticsAcademy/pull/3233"
+      state: merged
+    - title: "Copy button for code snippets in the docs (before the program)"
+      url: "https://github.com/JdeRobot/RoboticsAcademy/pull/3025"
+      state: merged
+    - title: "Dockerised local docs setup (before the program)"
+      url: "https://github.com/JdeRobot/RoboticsAcademy/pull/3028"
+      state: merged
+
+# source: verified career record, item O3
+- project: "JdeRobot/RoboticsApplicationManager"
+  url: "https://github.com/JdeRobot/RoboticsApplicationManager"
+  items:
+    - title: "State-machine transition tests with a coverage workflow"
+      url: "https://github.com/JdeRobot/RoboticsApplicationManager/pull/229"
+      state: merged
+    - title: "Lint CI setup"
+      url: "https://github.com/JdeRobot/RoboticsApplicationManager/pull/220"
+      state: merged
+    - title: "Contributing guide"
+      url: "https://github.com/JdeRobot/RoboticsApplicationManager/pull/226"
+      state: merged
+
+# source: verified career record, item O4
+- project: "JdeRobot/RoboticsInfrastructure"
+  url: "https://github.com/JdeRobot/RoboticsInfrastructure"
+  items:
+    - title: "ROS 2 launch tests, run in CI"
+      url: "https://github.com/JdeRobot/RoboticsInfrastructure/pull/549"
+      state: merged
+    - title: "Lint CI setup and Python reformatting"
+      url: "https://github.com/JdeRobot/RoboticsInfrastructure/pull/522"
+      state: merged
+    - title: "Contributing guide"
+      url: "https://github.com/JdeRobot/RoboticsInfrastructure/pull/529"
+      state: merged

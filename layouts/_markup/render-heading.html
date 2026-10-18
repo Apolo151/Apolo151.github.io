@@ -1,0 +1,1 @@
+<h{{ .Level }} dir="auto" id="{{ .Anchor }}"{{ range $k, $v := .Attributes }}{{ if not (in (slice "id" "dir") $k) }}{{ printf " %s=%q" $k $v | safeHTMLAttr }}{{ end }}{{ end }}>{{ .Text }}</h{{ .Level }}>

@@ -1,0 +1,32 @@
+{{ define "main" }}
+<h1>{{ .Title }}</h1>
+{{- if strings.TrimSpace .RawContent }}
+{{ partial "content.html" . }}
+{{- end }}
+{{- with index site.Data "opensource" }}
+<div class="os-list">
+  {{- range . }}
+  <section class="os-project">
+    <h2 class="os-name"><a href="{{ .url }}">{{ .project }}</a></h2>
+    {{- with .stars }}
+    {{- /* A plain count picks its plural form; an abbreviated value such as "1.1k" takes the large-number form. */}}
+    {{- $n := 1000 }}{{ if findRE `^\d+$` (string .) }}{{ $n = int . }}{{ end }}
+    <p class="os-stars"><span class="os-stars-value">{{ . }}</span> {{ i18n "stars" $n }}</p>
+    {{- end }}
+    {{- with .items }}
+    <ul class="os-items" role="list">
+      {{- range . }}
+      <li class="os-item">
+        <a href="{{ .url }}">{{ .title }}</a>
+        {{- if in (slice "merged" "open") .state }}
+        <span class="os-state os-state-{{ .state }}">{{ i18n (printf "state_%s" .state) }}</span>
+        {{- end }}
+      </li>
+      {{- end }}
+    </ul>
+    {{- end }}
+  </section>
+  {{- end }}
+</div>
+{{- end }}
+{{ end }}

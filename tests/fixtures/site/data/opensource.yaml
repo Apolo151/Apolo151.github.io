@@ -1,0 +1,17 @@
+- project: "example-org/fixture-project"
+  url: "https://example.com/fixture-project"
+  stars: "1.1k"
+  items:
+    - title: "Fixture change one"
+      url: "https://example.com/fixture-project/1"
+      state: merged
+    - title: "Fixture change two"
+      url: "https://example.com/fixture-project/2"
+      state: open
+- project: "example-org/second-fixture"
+  url: "https://example.com/second-fixture"
+  stars: 42
+  items:
+    - title: "Fixture change three"
+      url: "https://example.com/second-fixture/3"
+      state: merged

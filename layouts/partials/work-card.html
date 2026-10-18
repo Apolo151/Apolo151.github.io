@@ -1,0 +1,10 @@
+{{- /* Takes a Work page: category label, title link, summary (Markdown rendered, then reduced to plain text). */ -}}
+<article class="work-card">
+  {{- with .Params.category }}
+  <p class="label">{{ . }}</p>
+  {{- end }}
+  <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+  {{- with .Params.summary }}
+  <p class="work-card-summary" dir="auto">{{ $.RenderString . | plainify | htmlUnescape }}</p>
+  {{- end }}
+</article>

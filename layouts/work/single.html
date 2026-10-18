@@ -1,0 +1,22 @@
+{{ define "main" }}
+<article class="case">
+  <header class="case-header">
+    {{- with .Params.category }}
+    <p class="label">{{ . }}</p>
+    {{- end }}
+    <h1>{{ .Title }}</h1>
+    {{ partial "meta-strip.html" . }}
+  </header>
+  {{- range $key := slice "problem" "decision" "result" "wrong" }}
+  {{- with index $.Params $key }}
+  <section class="case-section" id="{{ $key }}">
+    <h2>{{ i18n (printf "case_%s" $key) }}</h2>
+    {{ partial "content.html" (dict "html" ($.RenderString (dict "display" "block") .)) }}
+  </section>
+  {{- end }}
+  {{- end }}
+  {{- if strings.TrimSpace .RawContent }}
+  {{ partial "content.html" . }}
+  {{- end }}
+</article>
+{{ end }}

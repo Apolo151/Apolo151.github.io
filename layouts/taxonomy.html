@@ -1,0 +1,10 @@
+{{ define "main" }}
+<h1>{{ i18n "categories" }}</h1>
+<ul class="page-list" role="list">
+  {{- range .Data.Terms.Alphabetical }}
+  {{- with .Page }}
+  <li><a href="{{ .RelPermalink }}">{{ partial "category-name.html" . }}</a></li>
+  {{- end }}
+  {{- end }}
+</ul>
+{{ end }}

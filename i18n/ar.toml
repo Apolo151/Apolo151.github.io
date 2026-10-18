@@ -1,0 +1,147 @@
+[brand]
+other = "عبدالله"
+
+[skip_link]
+other = "انتقل إلى المحتوى"
+
+[nav_main]
+other = "التنقل الرئيسي"
+
+[nav_work]
+other = "الأعمال"
+
+[nav_writing]
+other = "الكتابة"
+
+[nav_experience]
+other = "الخبرة"
+
+[nav_opensource]
+other = "المصادر المفتوحة"
+
+[nav_now]
+other = "الآن"
+
+[nav_about]
+other = "نبذة"
+
+[nav_contact]
+other = "التواصل"
+
+[cta_contact]
+other = "تواصل معي"
+
+[theme_toggle]
+other = "المظهر"
+
+[theme_toggle_label]
+other = "التبديل بين المظهر الفاتح والداكن"
+
+[lang_toggle]
+other = "English"
+
+[lang_toggle_label]
+other = "اقرأ هذه الصفحة بالإنجليزية"
+
+[read_time]
+zero = "أقل من دقيقة للقراءة"
+one = "دقيقة واحدة للقراءة"
+two = "دقيقتان للقراءة"
+few = "{{ .Count }} دقائق للقراءة"
+many = "{{ .Count }} دقيقة للقراءة"
+other = "{{ .Count }} دقيقة للقراءة"
+
+[categories]
+other = "التصنيفات"
+
+[latest_writing]
+other = "أحدث الكتابات"
+
+[selected_work]
+other = "أعمال مختارة"
+
+[proof_heading]
+other = "بالأرقام"
+
+[all_work]
+other = "كل الأعمال"
+
+[all_writing]
+other = "كل الكتابات"
+
+[meta_role]
+other = "الدور"
+
+[meta_team]
+other = "الفريق"
+
+[meta_date]
+other = "التاريخ"
+
+[case_problem]
+other = "المشكلة"
+
+[case_decision]
+other = "القرار"
+
+[case_result]
+other = "النتيجة"
+
+[case_wrong]
+other = "ما الذي لم ينجح"
+
+[present]
+other = "حتى الآن"
+
+[stars]
+one = "نجمة"
+two = "نجمتان"
+few = "نجوم"
+many = "نجمة"
+other = "نجمة"
+
+[state_merged]
+other = "مدموج"
+
+[state_open]
+other = "قيد المراجعة"
+
+[lang_marker_ar]
+other = "بالعربية"
+
+[lang_marker_en]
+other = "بالإنجليزية"
+
+[lang_marker_mixed]
+other = "بالعربية والإنجليزية"
+
+
+[category_heading]
+other = "التصنيف: {{ .Name }}"
+
+[cat_postmortems]
+other = "مراجعات ما بعد الحوادث"
+
+[cat_learning_and_exploration]
+other = "التعلم والاستكشاف"
+
+[cat_how_this_site_is_built]
+other = "كيف بُني هذا الموقع"
+
+[no_posts]
+other = "لم يُنشر شيء بعد."
+
+[subscribe]
+other = "الاشتراك (RSS)"
+
+[feed_all]
+other = "كل الكتابات (RSS)"
+
+[feed_this_language]
+other = "الكتابة بالعربية (RSS)"
+
+[feed_desc_all]
+other = "كتابات عبدالله إبراهيم إسماعيل بالعربية والإنجليزية."
+
+[feed_desc_lang]
+other = "كتابات عبدالله إبراهيم إسماعيل بالعربية."

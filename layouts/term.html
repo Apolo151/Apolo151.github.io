@@ -1,0 +1,5 @@
+{{ define "main" }}
+<h1>{{ i18n "category_heading" (dict "Name" (partial "category-name.html" .)) }}</h1>
+{{- partial "post-list.html" .Pages }}
+<p><a href="{{ (site.GetPage "/writing").RelPermalink }}">{{ i18n "all_writing" }}</a></p>
+{{ end }}

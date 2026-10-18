@@ -1,0 +1,51 @@
+baseURL = "https://apolo151.me/"
+title = "Abdallah Ibrahim Ismail"
+languageCode = "en"
+defaultContentLanguage = "en"
+defaultContentLanguageInSubdir = false
+
+# One taxonomy: post categories (postmortems, learning-and-exploration, how-this-site-is-built).
+[taxonomies]
+category = "categories"
+
+# Feeds (see layouts/home.rss.xml). Only the home page outputs RSS: no section or category feeds.
+#   /index.xml      combined feed (default-language home, all posts)
+#   /feed.en.xml    English feed (en and mixed posts)
+#   /ar/index.xml   Arabic feed (ar and mixed posts)
+[outputFormats.RSSEN]
+mediaType = "application/rss+xml"
+baseName = "feed.en"
+isPlainText = false
+notAlternative = true
+
+[outputs]
+home = ["HTML", "RSS", "RSSEN"]
+section = ["HTML"]
+taxonomy = ["HTML"]
+term = ["HTML"]
+page = ["HTML"]
+
+[languages.en]
+languageCode = "en"
+languageName = "English"
+languageDirection = "ltr"
+weight = 1
+
+[languages.ar]
+languageCode = "ar"
+languageName = "العربية"
+languageDirection = "rtl"
+title = "عبدالله إبراهيم إسماعيل"
+weight = 2
+
+# A language-level outputs table replaces the whole site-level one, so every kind is listed.
+[languages.ar.outputs]
+home = ["HTML", "RSS"]
+section = ["HTML"]
+taxonomy = ["HTML"]
+term = ["HTML"]
+page = ["HTML"]
+
+[params]
+# Shown on the Contact page. The owner confirms which of his addresses to publish.
+email = "abdallah.ibrahim.ismail15@gmail.com"

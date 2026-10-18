@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# Pre-commit: safety-check the staged site sources, then run the unit tests and build checks.
+set -euo pipefail
+cd "$(git rev-parse --show-toplevel)"
+
+bash tools/check_staged.sh
+python3 -I -m unittest discover tools/tests
+bash tests/build_check.sh

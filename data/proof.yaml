@@ -1,0 +1,9 @@
+# Proof row on the home page. Every value comes from a verified career record and carries a neutral
+# reference id (P1, P2, ...). Only verified values; recompute before launch. Labels are English only.
+
+# source: verified career record, item P1
+- value: "13"
+  label: "pull requests for Google Summer of Code 2025"
+# source: verified career record, item P2
+- value: "KCNA"
+  label: "Kubernetes and Cloud Native Associate, July 2026"

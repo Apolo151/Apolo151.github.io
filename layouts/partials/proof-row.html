@@ -1,0 +1,11 @@
+{{- /* Takes a list of {value, label} (data/proof.yaml). Renders nothing for an empty list. The data file is English, so labels carry lang="en" on other-language pages. */ -}}
+{{- with . }}
+<section class="proof" aria-labelledby="proof-heading">
+  <h2 id="proof-heading" class="label">{{ i18n "proof_heading" }}</h2>
+  <ul class="proof-row" role="list">
+    {{- range . }}
+    <li class="proof-item"><span class="proof-value">{{ .value }}</span> <span class="proof-label" dir="auto"{{ if ne site.Language.Lang "en" }} lang="en"{{ end }}>{{ .label }}</span></li>
+    {{- end }}
+  </ul>
+</section>
+{{- end }}

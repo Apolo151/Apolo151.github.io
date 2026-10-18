@@ -1,0 +1,2 @@
+{{- /* Mail link to site.Params.email (hugo.toml). Fails the build when the address is not set. */ -}}
+{{- with site.Params.email }}<a href="mailto:{{ . }}">{{ . }}</a>{{ else }}{{ errorf "params.email is not set in hugo.toml" }}{{ end -}}

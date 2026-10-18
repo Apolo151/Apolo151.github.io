@@ -1,0 +1,140 @@
+[brand]
+other = "abdallah"
+
+[skip_link]
+other = "Skip to content"
+
+[nav_main]
+other = "Main"
+
+[nav_work]
+other = "Work"
+
+[nav_writing]
+other = "Writing"
+
+[nav_experience]
+other = "Experience"
+
+[nav_opensource]
+other = "Open source"
+
+[nav_now]
+other = "Now"
+
+[nav_about]
+other = "About"
+
+[nav_contact]
+other = "Contact"
+
+[cta_contact]
+other = "Contact"
+
+[theme_toggle]
+other = "Theme"
+
+[theme_toggle_label]
+other = "Toggle light and dark theme"
+
+[lang_toggle]
+other = "العربية"
+
+[lang_toggle_label]
+other = "Read this page in Arabic"
+
+[read_time]
+one = "1 min read"
+other = "{{ .Count }} min read"
+
+[categories]
+other = "Categories"
+
+[latest_writing]
+other = "Latest writing"
+
+[selected_work]
+other = "Selected work"
+
+[proof_heading]
+other = "In numbers"
+
+[all_work]
+other = "All work"
+
+[all_writing]
+other = "All writing"
+
+[meta_role]
+other = "Role"
+
+[meta_team]
+other = "Team"
+
+[meta_date]
+other = "Date"
+
+[case_problem]
+other = "The problem"
+
+[case_decision]
+other = "The decision"
+
+[case_result]
+other = "The result"
+
+[case_wrong]
+other = "What went wrong"
+
+[present]
+other = "Present"
+
+[stars]
+one = "star"
+other = "stars"
+
+[state_merged]
+other = "merged"
+
+[state_open]
+other = "open"
+
+[lang_marker_ar]
+other = "Arabic"
+
+[lang_marker_en]
+other = "English"
+
+[lang_marker_mixed]
+other = "Arabic and English"
+
+
+[category_heading]
+other = "Category: {{ .Name }}"
+
+[cat_postmortems]
+other = "Postmortems"
+
+[cat_learning_and_exploration]
+other = "Learning and exploration"
+
+[cat_how_this_site_is_built]
+other = "How this site is built"
+
+[no_posts]
+other = "Nothing published yet."
+
+[subscribe]
+other = "Subscribe (RSS)"
+
+[feed_all]
+other = "All writing (RSS)"
+
+[feed_this_language]
+other = "Writing in English (RSS)"
+
+[feed_desc_all]
+other = "Writing by Abdallah Ibrahim Ismail, in English and Arabic."
+
+[feed_desc_lang]
+other = "Writing by Abdallah Ibrahim Ismail, in English."

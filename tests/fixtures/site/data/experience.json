@@ -1,0 +1,5 @@
+[
+  {"type": "job", "org": "Fixture Org One", "title": "Fixture Title One", "location": "Fixture City", "start": "2025-03", "end": "present", "lines": ["Fixture line one for record one.", "Fixture line two for record one."]},
+  {"type": "project", "org": "Fixture Org Two", "title": "Fixture Title Two", "location": "Remote", "start": "2024-06", "end": "2024-09", "lines": ["Fixture line for record two."]},
+  {"type": "volunteering", "org": "Fixture Org Three", "title": "Fixture Title Three", "location": "", "start": "2023-01", "end": "2024-02", "lines": ["Fixture line for record three."]}
+]

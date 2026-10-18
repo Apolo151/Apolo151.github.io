@@ -1,0 +1,67 @@
+[
+  {
+    "type": "job",
+    "org": "MAKKN",
+    "title": "AI Engineering Intern",
+    "location": "Egypt",
+    "start": "2026-07",
+    "end": "2026-09",
+    "lines": [
+      "Found that RNNoise denoising was degrading ASR for an Egyptian Arabic voice agent and bypassed it on the STT path, cutting WER from 54.8% to 29.6% (60 clips including 8 kHz telephony).",
+      "Benchmarked five open-source Egyptian and code-switching ASR models at 16 kHz and simulated 8 kHz telephony, and wrote the STT, LLM and tashkeel selection decision records.",
+      "Built evaluation harnesses for ASR, LLM, TTS and code-switching: LLM-as-judge, an end-of-turn benchmark and live-audio re-scoring.",
+      "Built a dedicated vLLM ASR service and shipped RAG, tool calling and latency instrumentation on a four-person team (40 of 63 merged commits)."
+    ]
+  },
+  {
+    "type": "job",
+    "org": "Nokia",
+    "title": "Network Infrastructure, AI & Automation Intern",
+    "location": "Egypt",
+    "start": "2026-07",
+    "end": "2026-08",
+    "lines": [
+      "Built a RAG assistant over a 1,568-page Nokia hardware planning guide (structure-aware chunking, manual cosine search, cite-or-refuse prompt) that scored 8/8 on a fixed evaluation, including a correct refusal.",
+      "Built a four-screen Power Apps task manager on SharePoint with a Power Automate email-notification flow as the program capstone."
+    ]
+  },
+  {
+    "type": "job",
+    "org": "Obelion.ai",
+    "title": "Cloud Engineering Intern",
+    "location": "Remote",
+    "start": "2024-12",
+    "end": "2025-02",
+    "lines": [
+      "Designed how a cloud-provisioning platform's Ansible engine would run on Kubernetes (Jobs, RBAC, Secrets, EFS volumes, templated manifests) and prototyped job creation with the Node client.",
+      "Built an HA RabbitMQ cluster with the operator and Kustomize overlays, plus Terraform modules for RDS and Amazon MQ.",
+      "Built a GitHub Actions to S3 to Auto Scaling deployment with a least-privilege IAM user, EFS and a private database behind a bastion TCP proxy, and benchmarked PostgreSQL dump formats on 1.5 GB (parallel restore about 3x faster)."
+    ]
+  },
+  {
+    "type": "job",
+    "org": "3D|Diagnostix",
+    "title": "Backend Engineering Intern",
+    "location": "Remote",
+    "start": "2024-09",
+    "end": "2024-12",
+    "lines": [
+      "Analyzed a legacy Node.js order controller (22 endpoints), found contradictory billing logic and redundant queries, and wrote endpoint-level test plans and logging improvements.",
+      "Designed and demoed a performance-monitoring tool (response time, TTFB, percentiles) with a 51-hour plan for dashboards and regional probes, and hypothesised the data layer as the main bottleneck (to be validated)."
+    ]
+  },
+  {
+    "type": "job",
+    "org": "eSpace",
+    "title": "DevOps Intern",
+    "location": "Egypt",
+    "start": "2024-07-05",
+    "end": "2024-09-05",
+    "lines": [
+      "Built an AWS staging environment (VPC, bastion nginx reverse proxy with HTTPS and basic auth, private Jenkins host) used by software, QA and pentest interns.",
+      "Delivered Jenkins CI/CD pipelines for the three apps of an internal AI product (React, Rails, Python): Docker Compose builds from the staging branch, health checks and per-build release directories.",
+      "Wrote Terraform for a three-AZ AWS network (S3 remote state, bastion, RDS subnets, security groups, modules) and Ansible roles for LAMP and LEMP stacks.",
+      "Diagnosed recurring staging outages from system and application logs (multi-gigabyte AI Docker images from Jenkins builds filling the disk) and added scheduled image cleanup; no further outages."
+    ]
+  }
+]

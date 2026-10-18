@@ -1,0 +1,34 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+{{- $title := .Title }}{{ if eq .Kind "term" }}{{ $title = i18n "category_heading" (dict "Name" (partial "category-name.html" .)) }}{{ end -}}
+<title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ $title }} | {{ site.Title }}{{ end }}</title>
+{{- $desc := .Params.description | default (.Params.summary | default (.Params.hero | default "")) | plainify | htmlUnescape | truncate 200 }}
+{{- if not $desc }}{{ $desc = printf "%s | %s" $title site.Title }}{{ end }}
+<meta name="description" content="{{ $desc }}">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+{{- if eq .Language.Lang "ar" }}
+{{- /* Preload the Arabic text faces so the swap from the fallback font does not shift the layout. */}}
+<link rel="preload" href="/fonts/ibm-plex-sans-arabic-arabic-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/ibm-plex-sans-arabic-arabic-600-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/noto-naskh-arabic-arabic-600-normal.woff2" as="font" type="font/woff2" crossorigin>
+{{- end }}
+<link rel="canonical" href="{{ .Permalink }}">
+{{- if .Translations }}
+<link rel="alternate" hreflang="{{ .Language.LanguageCode }}" href="{{ .Permalink }}">
+{{- range .Translations }}
+<link rel="alternate" hreflang="{{ .Language.LanguageCode }}" href="{{ .Permalink }}">
+{{- end }}
+{{- $en := cond (eq .Language.Lang "en") . nil }}
+{{- range .Translations }}{{ if eq .Language.Lang "en" }}{{ $en = . }}{{ end }}{{ end }}
+{{- with $en }}
+<link rel="alternate" hreflang="x-default" href="{{ .Permalink }}">
+{{- end }}
+{{- end }}
+{{- /* Feeds: the combined feed on every page, plus this page's language feed (see hugo.toml). */}}
+<link rel="alternate" type="application/rss+xml" title="{{ i18n "feed_all" }}" href="{{ "index.xml" | absURL }}">
+<link rel="alternate" type="application/rss+xml" title="{{ i18n "feed_this_language" }}" href="{{ cond (eq .Language.Lang "ar") "ar/index.xml" "feed.en.xml" | absURL }}">
+{{- with $js := resources.Get "js/theme.js" | resources.Minify }}
+<script>{{ $js.Content | safeJS }}</script>{{/* content-ok: JS resource body, not page content */}}
+{{- end }}
+{{- $css := slice (resources.Get "css/tokens.css") (resources.Get "css/base.css") (resources.Get "css/components.css") | resources.Concat "css/main.css" | resources.Minify | resources.Fingerprint }}
+<link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">

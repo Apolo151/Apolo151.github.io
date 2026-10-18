@@ -1,0 +1,5 @@
+{{- /* Takes a term page. Display name: i18n for the three starting terms, otherwise the slug with hyphens
+  turned into spaces and title-cased ("my-new-topic" -> "My New Topic"). */ -}}
+{{- $page := . -}}
+{{- $keys := dict "postmortems" "cat_postmortems" "learning-and-exploration" "cat_learning_and_exploration" "how-this-site-is-built" "cat_how_this_site_is_built" -}}
+{{- with index $keys ($page.Data.Term | default "") }}{{ i18n . }}{{ else }}{{ replace ($page.Data.Term | default $page.Title) "-" " " | title }}{{ end -}}

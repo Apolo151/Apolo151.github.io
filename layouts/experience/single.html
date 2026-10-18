@@ -1,0 +1,39 @@
+{{- define "ym" -}}
+{{- /* "YYYY-MM" or "YYYY-MM-DD" -> "Mar 2025", "YYYY" -> "2025", "present" -> localised; anything else as given. */ -}}
+{{- if eq . "present" -}}{{ i18n "present" }}
+{{- else if findRE `^\d{4}-\d{2}$` . -}}{{ time.AsTime (printf "%s-01" .) | time.Format "Jan 2006" }}
+{{- else if findRE `^\d{4}-\d{2}-\d{2}$` . -}}{{ time.AsTime . | time.Format "Jan 2006" }}
+{{- else -}}{{ . }}
+{{- end -}}
+{{- end -}}
+{{ define "main" }}
+<h1>{{ .Title }}</h1>
+{{- if strings.TrimSpace .RawContent }}
+{{ partial "content.html" . }}
+{{- end }}
+{{- /* The exported data is English: on other-language pages the timeline is one LTR English block,
+  and only the localised date range keeps the page language's reading order. */ -}}
+{{- $foreign := ne site.Language.Lang "en" }}
+{{- with index site.Data "experience" }}
+<ol class="timeline" role="list"{{ if $foreign }} lang="en" dir="ltr"{{ end }}>
+  {{- range . }}
+  <li class="timeline-item">
+    <p class="timeline-dates">
+      {{- if $foreign }}<span class="timeline-range" dir="{{ site.Language.LanguageDirection }}" lang="{{ site.Language.LanguageCode }}">{{ end -}}
+      {{- with .start }}<time datetime="{{ . }}">{{ template "ym" . }}</time>{{ end -}}
+      {{- if and .start .end }} &ndash; {{ end -}}
+      {{- with .end }}{{ if eq . "present" }}<span>{{ template "ym" . }}</span>{{ else }}<time datetime="{{ . }}">{{ template "ym" . }}</time>{{ end }}{{ end -}}
+      {{- if $foreign }}</span>{{ end -}}
+    </p>
+    <h2 class="timeline-title" dir="auto">{{ .title }}</h2>
+    <p class="timeline-org" dir="auto">{{ .org }}{{ with .location }} <span aria-hidden="true">&middot;</span> {{ . }}{{ end }}</p>
+    {{- with .lines }}
+    <ul class="timeline-lines" role="list">
+      {{- range . }}<li>{{ . }}</li>{{ end }}
+    </ul>
+    {{- end }}
+  </li>
+  {{- end }}
+</ol>
+{{- end }}
+{{ end }}

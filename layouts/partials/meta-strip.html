@@ -1,0 +1,14 @@
+{{- /* Takes a Work page: role, team and date from front matter. Renders nothing when all three are missing. */ -}}
+{{- if or .Params.role .Params.team (not .Date.IsZero) }}
+<dl class="meta-strip">
+  {{- with .Params.role }}
+  <div><dt class="label">{{ i18n "meta_role" }}</dt><dd>{{ . }}</dd></div>
+  {{- end }}
+  {{- with .Params.team }}
+  <div><dt class="label">{{ i18n "meta_team" }}</dt><dd>{{ . }}</dd></div>
+  {{- end }}
+  {{- if not .Date.IsZero }}
+  <div><dt class="label">{{ i18n "meta_date" }}</dt><dd><time datetime="{{ .Date.Format "2006-01" }}">{{ .Date | time.Format "January 2006" }}</time></dd></div>
+  {{- end }}
+</dl>
+{{- end }}

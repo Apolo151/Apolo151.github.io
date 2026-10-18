@@ -1,0 +1,17 @@
+{{- /* Hugo has no paragraph or list render hook, so Goldmark's output is adjusted here. Render Markdown with this partial, never .Content directly.
+  - <p> gets dir="auto".
+  - Every <li> gets dir="auto": each item resolves its own direction and owns its marker and indentation.
+  - <ul> and <ol> get no dir: with dir="auto" on every item, a list's own dir="auto" has no text left to judge by
+    (children with their own dir are skipped) and always resolved LTR. Lists inherit the page or parent item direction.
+  - <ul> and <ol> get role="list" (list-style: none drops list semantics in Safari); <ol start="n"> becomes a counter reset.
+  - In loose lists the first <p> of an item gets no dir and no leading whitespace, because dir="auto" on the <li>
+    skips children with their own dir.
+  Takes a page (renders its body) or a dict with "html": Markdown already rendered with .RenderString (front-matter sections). */ -}}
+{{- $html := "" -}}
+{{- if reflect.IsMap . }}{{ $html = .html }}{{ else }}{{ $html = .Content }}{{ end -}}
+{{- range $m := findRESubmatch `<ol start="(\d+)">` $html -}}
+{{- $html = replace $html (index $m 0) (printf `<ol role="list" style="counter-reset: prose-ol %d">` (sub (int (index $m 1)) 1)) -}}
+{{- end -}}
+<div class="prose">
+{{- $html | replaceRE `<p>` `<p dir="auto">` | replaceRE `<ul>` `<ul role="list">` | replaceRE `<ol>` `<ol role="list">` | replaceRE `<li dir="auto"([ >])` `<li$1` | replaceRE `<li([ >])` `<li dir="auto"$1` | replaceRE `<li dir="auto">\s*<p dir="auto">` `<li dir="auto"><p>` | safeHTML -}}
+</div>

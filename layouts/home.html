@@ -1,0 +1,41 @@
+{{ define "main" }}
+<section class="hero">
+  <h1 class="hero-name">{{ site.Title }}</h1>
+  {{- with .Params.hero }}
+  <p class="hero-line">{{ . }}</p>
+  {{- end }}
+  {{- if strings.TrimSpace .RawContent }}
+  {{ partial "content.html" . }}
+  {{- end }}
+</section>
+
+{{ partial "proof-row.html" (index site.Data "proof") }}
+
+{{- $work := where site.RegularPages "Section" "work" }}
+{{- with first 4 $work }}
+<section class="home-section" aria-labelledby="selected-work">
+  <h2 id="selected-work" class="label">{{ i18n "selected_work" }}</h2>
+  <div class="work-grid">
+    {{- range . }}{{ partial "work-card.html" . }}{{ end }}
+  </div>
+  {{- if gt (len $work) 4 }}
+  <p class="more"><a href="{{ "work/" | relLangURL }}">{{ i18n "all_work" }}</a></p>
+  {{- end }}
+</section>
+{{- end }}
+
+{{- $posts := (where site.RegularPages "Section" "writing").ByDate.Reverse }}
+{{- with first 3 $posts }}
+<section class="home-section" aria-labelledby="latest-writing">
+  <h2 id="latest-writing" class="label">{{ i18n "latest_writing" }}</h2>
+  <ul class="post-list" role="list">
+    {{- range . }}{{ partial "post-item.html" . }}{{ end }}
+  </ul>
+  <p class="more"><a href="{{ "writing/" | relLangURL }}">{{ i18n "all_writing" }}</a></p>
+</section>
+{{- end }}
+
+{{- with partial "page-or-default.html" "/contact" }}
+<p class="home-contact"><a class="cta-contact" href="{{ .RelPermalink }}">{{ i18n "cta_contact" }}</a></p>
+{{- end }}
+{{ end }}

@@ -1,0 +1,21 @@
+{{ define "main" }}
+<h1>{{ .Title }}</h1>
+{{- if strings.TrimSpace .RawContent }}
+{{ partial "content.html" . }}
+{{- end }}
+{{- $terms := site.Taxonomies.categories.Alphabetical }}
+{{- if $terms }}
+<nav class="category-nav" aria-label="{{ i18n "categories" }}">
+  <span class="label">{{ i18n "categories" }}</span>
+  <ul role="list">
+    {{- range $terms }}
+    {{- with .Page }}
+    <li><a class="cat-link" href="{{ .RelPermalink }}">{{ partial "category-name.html" . }}</a></li>
+    {{- end }}
+    {{- end }}
+  </ul>
+</nav>
+{{- end }}
+{{- partial "post-list.html" .Pages }}
+<p class="feed-link"><a href="{{ cond (eq .Language.Lang "ar") "ar/index.xml" "feed.en.xml" | relURL }}">{{ i18n "subscribe" }}</a></p>
+{{ end }}

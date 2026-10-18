@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="{{ site.Language.LanguageCode }}" dir="{{ site.Language.LanguageDirection }}" data-theme="dark">
+<head>
+  {{ partial "head.html" . }}
+</head>
+<body>
+  <a class="skip-link" href="#main">{{ i18n "skip_link" }}</a>
+  {{ partial "header.html" . }}
+  <main id="main" class="wrap" tabindex="-1">
+    {{ block "main" . }}{{ end }}
+  </main>
+  {{ partial "footer.html" . }}
+</body>
+</html>

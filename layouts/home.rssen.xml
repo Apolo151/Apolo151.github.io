@@ -1,0 +1,2 @@
+{{- /* /feed.en.xml: English feed (posts with language en or mixed). */ -}}
+{{- partial "feed.xml" (dict "langs" (slice "en" "mixed") "feedlang" "en" "self" "feed.en.xml" "desc" (i18n "feed_desc_lang")) -}}

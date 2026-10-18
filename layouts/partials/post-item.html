@@ -1,0 +1,16 @@
+{{- /* Takes a Writing page: date, title, reading time, language marker, category chips.
+  The marker shows when the post's language differs from the site language (always for mixed). */ -}}
+{{- $lang := .Params.language | default "" -}}
+<li class="post-item">
+  <time class="post-date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date | time.Format "2 Jan 2006" }}</time>
+  <a class="post-title" href="{{ .RelPermalink }}" dir="auto">{{ .Title }}</a>
+  <span class="post-meta">
+    <span class="read-time">{{ i18n "read_time" .ReadingTime }}</span>
+    {{- if and $lang (ne $lang site.Language.Lang) (in (slice "ar" "en" "mixed") $lang) }}
+    <span class="lang-marker">{{ i18n (printf "lang_marker_%s" $lang) }}</span>
+    {{- end }}
+    {{- range .GetTerms "categories" }}
+    <a class="chip" href="{{ .RelPermalink }}">{{ partial "category-name.html" . }}</a>
+    {{- end }}
+  </span>
+</li>

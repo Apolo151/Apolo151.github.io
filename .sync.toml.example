@@ -1,0 +1,11 @@
+# Copy to .sync.toml (git-ignored) and set your own paths. Never commit real paths.
+# Absolute paths, ~ and paths relative to this file are accepted.
+
+# Folder in your Obsidian vault that holds blog notes (read-only; nothing outside it is read).
+vault_blog_dir = "/path/to/your/vault/Blog"
+
+# Optional: a flat folder of images that notes may embed. Leave empty or remove to disable.
+attachments_dir = "/path/to/your/vault/Attachments"
+
+# Hugo content folder (pages are written to <content_dir>/writing/<slug>/).
+content_dir = "content"

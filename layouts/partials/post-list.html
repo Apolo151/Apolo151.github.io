@@ -1,0 +1,8 @@
+{{- /* Takes a page collection of posts: newest first, or the empty-state line. */ -}}
+{{- if . }}
+<ul class="post-list" role="list">
+  {{- range .ByDate.Reverse }}{{ partial "post-item.html" . }}{{ end }}
+</ul>
+{{- else }}
+<p class="empty">{{ i18n "no_posts" }}</p>
+{{- end }}

@@ -1,0 +1,7 @@
+{{- /* /index.xml. On the default-language (English) home this is the COMBINED feed; on the Arabic home
+  (/ar/index.xml) it is the Arabic-only feed. The English-only feed is layouts/home.rssen.xml (/feed.en.xml). */ -}}
+{{- if eq .Language.Lang "en" -}}
+{{- partial "feed.xml" (dict "langs" (slice) "feedlang" "en" "self" "index.xml" "desc" (i18n "feed_desc_all")) -}}
+{{- else -}}
+{{- partial "feed.xml" (dict "langs" (slice "ar" "mixed") "feedlang" "ar" "self" "ar/index.xml" "desc" (i18n "feed_desc_lang")) -}}
+{{- end -}}

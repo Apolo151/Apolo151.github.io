@@ -1,0 +1,5 @@
+# Copy to .denylist (git-ignored) and add one term per line.
+# Terms match case-insensitively as whole words. Blank lines and # comments are ignored.
+# Put real names only in your local .denylist, never in this file.
+ExamplePrivateTerm
+Another Placeholder Name

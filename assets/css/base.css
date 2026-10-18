@@ -1,0 +1,245 @@
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: var(--step-0);
+  line-height: 1.65;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-wrap: break-word;
+}
+
+.wrap {
+  width: 100%;
+  max-inline-size: 72rem;
+  margin-inline: auto;
+  padding-inline: var(--space-4);
+}
+@media (min-width: 48em) { .wrap { padding-inline: var(--space-6); } }
+
+main { flex: 1; padding-block: var(--space-6); }
+
+h1, h2, h3 {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  line-height: 1.2;
+  margin-block: 0 var(--space-4);
+}
+h1 { font-size: var(--step-4); }
+h2 { font-size: var(--step-2); }
+h3 { font-size: var(--step-1); }
+
+p { margin-block: 0 var(--space-4); max-inline-size: var(--measure); }
+
+a {
+  color: var(--accent);
+  text-underline-offset: 0.2em;
+  text-decoration-thickness: 1px;
+}
+a:hover { text-decoration-thickness: 2px; }
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+.label {
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.label-2 { color: var(--accent-2); }
+
+/* Header */
+.site-header { border-block-end: 1px solid var(--border); }
+.site-header .wrap {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2) var(--space-5);
+  padding-block: var(--space-3);
+}
+.brand {
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  color: var(--text);
+  text-decoration: none;
+}
+.header-tools { display: flex; align-items: center; gap: var(--space-3); }
+.site-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-4);
+}
+.site-nav a {
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  color: var(--text-dim);
+  text-decoration: none;
+  display: inline-block;
+  padding-block: var(--space-2);
+}
+.site-nav a:hover, .site-nav a[aria-current="page"] { color: var(--accent); }
+
+.site-header .wrap > .site-nav { order: 3; inline-size: 100%; }
+@media (min-width: 64em) {
+  .site-header .wrap > .site-nav { order: 0; inline-size: auto; }
+}
+
+.theme-toggle {
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  color: var(--text-dim);
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: var(--space-2) var(--space-3);
+  min-block-size: 2.75rem;
+  cursor: pointer;
+}
+.theme-toggle:hover { color: var(--accent); border-color: var(--accent); }
+
+/* Footer */
+.site-footer {
+  border-block-start: 1px solid var(--border);
+  color: var(--text-dim);
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+}
+.site-footer .wrap { padding-block: var(--space-5); }
+.site-footer p { margin: 0; max-inline-size: none; }
+
+@media (prefers-reduced-motion: no-preference) {
+  a, .theme-toggle { transition: color 0.15s ease, border-color 0.15s ease; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}
+
+.skip-link {
+  position: absolute;
+  inset-inline-start: var(--space-4);
+  inset-block-start: -4rem;
+  background: var(--surface);
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  padding: var(--space-2) var(--space-3);
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  z-index: 10;
+}
+.skip-link:focus { inset-block-start: var(--space-2); }
+
+/* Language toggle */
+.lang-toggle {
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  color: var(--text-dim);
+  text-decoration: none;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: var(--space-2) var(--space-3);
+  min-block-size: 2.75rem;
+  display: inline-flex;
+  align-items: center;
+}
+.lang-toggle:hover { color: var(--accent); border-color: var(--accent); }
+
+/* Arabic: no letter-spacing or uppercase on label-style text */
+:lang(ar) .label, :lang(ar) .brand, :lang(ar) .site-nav a { letter-spacing: 0; text-transform: none; }
+
+.cta-contact {
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  display: inline-block;
+  padding: var(--space-2) var(--space-4);
+  border: 1px solid var(--accent);
+  border-radius: var(--radius);
+  text-decoration: none;
+}
+.cta-contact:hover { background: var(--accent); color: var(--bg); }
+
+/* Mixed-language text: direction is chosen per block by the first strong character.
+   Markdown paragraphs, headings and blockquotes get dir="auto" from render hooks;
+   list items and table cells have no hook, so they use unicode-bidi instead. */
+li, td, th { unicode-bidi: plaintext; }
+blockquote { margin: 0 0 var(--space-4); color: var(--text-dim); }
+/* The bar sits on each child, not on the blockquote: dir="auto" on a blockquote ignores
+   children that carry their own dir, so only the children know the real direction. */
+.prose blockquote > * { margin-block: 0 var(--space-3); padding-inline-start: var(--space-4); border-inline-start: 2px solid var(--border); }
+.prose blockquote > :last-child { margin-block-end: 0; }
+/* A nested quote adds no bar of its own; its children draw theirs. */
+.prose blockquote > blockquote { margin: 0 0 var(--space-3); padding-inline-start: 0; border-inline-start: 0; }
+
+/* Code is always left-to-right, even inside Arabic text and on RTL pages. */
+pre, code, kbd {
+  direction: ltr;
+  unicode-bidi: isolate;
+  text-align: start;
+  font-family: var(--font-mono);
+}
+pre {
+  overflow-x: auto;
+  margin-block: 0 var(--space-4);
+  padding: var(--space-3) var(--space-4);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  font-size: var(--step--1);
+  line-height: 1.5;
+}
+:not(pre) > code, kbd {
+  font-size: 0.9em;
+  background: var(--surface);
+  padding: 0.1em 0.35em;
+  border-radius: 3px;
+}
+pre code { background: none; padding: 0; font-size: inherit; }
+
+/* Lists carry no dir: they inherit the page or parent item direction, and each <li> (dir="auto" from content.html)
+   owns its direction, marker and indentation. Markers are inline content in the item's own flow (li is
+   unicode-bidi: plaintext), as inline-blocks, so the gap needs no margin and follows the item's direction.
+   Bullets have empty alt text; numbers stay readable. Both lists keep role="list" from content.html. */
+.prose ul, .prose ol { list-style: none; margin-block: 0 var(--space-4); padding: 0; }
+.prose li > ul, .prose li > ol { margin-block: var(--space-1) 0; padding-inline-start: var(--space-4); }
+.prose ul > li::before {
+  content: "\2022";
+  content: "\2022" / "";
+  display: inline-block;
+  inline-size: 1.25em;
+  color: var(--accent);
+}
+/* Ordered lists: a counter instead of the native marker, which sat in the list padding on the list's side and
+   clipped at the viewport edge on RTL pages. min-inline-size lets a long number grow instead of clipping.
+   <ol start="n"> gets its counter reset from content.html. */
+.prose ol { counter-reset: prose-ol; }
+.prose ol > li { counter-increment: prose-ol; }
+.prose ol > li::before {
+  content: counter(prose-ol) ".";
+  display: inline-block;
+  min-inline-size: 1.5em;
+  padding-inline-end: 0.5em; /* the marker inherits the item's direction, so this always faces the text */
+  font-variant-numeric: tabular-nums;
+  color: var(--accent);
+}
+.prose li ul > li::before { content: "\2013"; content: "\2013" / ""; color: var(--accent-2); }
+/* Loose lists (blank lines between items) wrap each item in <p>. The first paragraph runs inline so the
+   bullet shares its line; later paragraphs stay blocks, indented past the bullet. Loose items get space between them. */
+.prose li > p:first-child { display: inline; unicode-bidi: normal; } /* p is isolate in the UA sheet; inline it must join the item flow */
+.prose li > p + p { display: block; margin-block: var(--space-2) 0; padding-inline-start: 1.25em; }
+.prose li:has(> p) { margin-block-end: var(--space-3); }
+
+main:focus { outline: none; }

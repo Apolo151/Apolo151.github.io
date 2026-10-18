@@ -1,0 +1,11 @@
+{{ define "main" }}
+<h1>{{ .Title }}</h1>
+{{- if strings.TrimSpace .RawContent }}
+{{ partial "content.html" . }}
+{{- end }}
+<ul class="page-list" role="list">
+  {{- range .Pages }}
+  <li><a href="{{ .RelPermalink }}" dir="auto">{{ .Title }}</a></li>
+  {{- end }}
+</ul>
+{{ end }}

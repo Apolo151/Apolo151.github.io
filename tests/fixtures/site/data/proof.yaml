@@ -1,0 +1,6 @@
+- value: "11"
+  label: "fixture metric one"
+- value: "2.2k"
+  label: "fixture metric two"
+- value: "FX-1"
+  label: "fixture metric three"

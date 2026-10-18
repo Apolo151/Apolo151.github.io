@@ -1,0 +1,58 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Hugo extended
+        run: |
+          VERSION="$(cat .hugo-version)"
+          curl -fsSL -o hugo.deb "https://github.com/gohugoio/hugo/releases/download/v${VERSION}/hugo_extended_${VERSION}_linux-amd64.deb"
+          sudo dpkg -i hugo.deb
+          rm hugo.deb
+          hugo version
+      - name: Build and check
+        run: bash tests/build_check.sh
+      - name: Safety check built site
+        env:
+          DENYLIST: ${{ secrets.DENYLIST }}
+        run: |
+          ARGS=()
+          if [ -n "${DENYLIST}" ]; then
+            DL_FILE="$(mktemp)"
+            printf '%s\n' "${DENYLIST}" > "${DL_FILE}"
+            ARGS=(--denylist "${DL_FILE}")
+          else
+            echo "::notice::DENYLIST secret not set; denylist check skipped"
+          fi
+          python3 -I tools/check_public.py "${ARGS[@]}" public
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: public
+
+  deploy:
+    needs: build
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
